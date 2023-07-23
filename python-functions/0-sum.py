@@ -1,9 +1,8 @@
 def add(a, b):
     return a+b
-#add=__import__('0-sum').add
-print(add(1, 2))
-"""
-print(add(98, 0))
-print(add(100, -2))
-print(add(0, 0))
-"""
+result = add(1, 2)
+#result = add(100, -2)
+#result = add(-100, -2)
+#result = add(0, 0)
+print(result)
+
