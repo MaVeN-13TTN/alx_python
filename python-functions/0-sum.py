@@ -1,5 +1,6 @@
-add = __import__('add_0').add
-print(add(1, 2))
-print(add(100, -2))
-print(add(-100, -2))
-print(add(0, 0))
+def add(a, b):
+    return a+b
+add(1, 2)
+add(100, -2)
+add(-100, -2)
+add(0, 0)
