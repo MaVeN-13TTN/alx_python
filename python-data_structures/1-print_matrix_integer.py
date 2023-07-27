@@ -3,10 +3,10 @@ def print_matrix_integer(matrix=[[]]):
         print()
     else:
         for row in matrix:
+            print()
             for i, num in enumerate(row):
                 if i == len(row) - 1:
                     print("{:d}".format(num))
                 else:
                     print("{:d}".format(num), end=" ")
-        print()
         
