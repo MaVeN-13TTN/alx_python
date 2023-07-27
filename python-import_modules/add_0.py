@@ -1,6 +1,6 @@
 def add(a,b):
-   result = a + b
-   return result
+   return a + b
+   
    
 
 
