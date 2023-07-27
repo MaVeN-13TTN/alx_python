@@ -1,5 +1,4 @@
-if __name__ == "__main__":
-   def safe_print_division(a, b):
+def safe_print_division(a, b):
     try:
         result = a / b
     except ZeroDivisionError:
@@ -7,4 +6,3 @@ if __name__ == "__main__":
     finally:
         print("Inside result: {}".format(result))
     return result
-
