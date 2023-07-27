@@ -5,8 +5,6 @@ def test_arguments():
 
     if num_arguments == 1:
         print("{} argument".format(num_arguments))
-        argument = sys.argv[1]
-        print(argument)
     elif num_arguments >1:
         print("{} arguments".format(num_arguments))
     else:
