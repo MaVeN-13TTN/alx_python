@@ -1,2 +1,3 @@
-import add_0
-value= add_0.add(1,2)
+if __name__ == "__main__":
+    from add_0 import add 
+    add(1,2)
