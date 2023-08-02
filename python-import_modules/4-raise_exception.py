@@ -1,6 +1,5 @@
 def raise_exception():
-    # Raise a TypeError exception with a custom message
-    raise TypeError("Custom exception message")
+    raise TypeError("This function raises a TypeError exception.")
 
 try:
     raise_exception()
