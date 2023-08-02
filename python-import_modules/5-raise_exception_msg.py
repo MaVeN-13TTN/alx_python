@@ -1,2 +1,2 @@
-def raise_exception():
-    raise TypeError("This function raises a TypeError exception.")
+def raise_exception_msg(message="C is fun"):
+    raise NameError(message)
