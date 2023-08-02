@@ -11,5 +11,5 @@ input_matrix = [
 ]
 '''
 
-result_matrix = square_values(input_matrix)
+result_matrix = square_values()
 print(result_matrix)
