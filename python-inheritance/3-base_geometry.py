@@ -1,7 +1,7 @@
-""" Module base geometry
-"""
+
+"""Defines an empty class BaseGeometry."""
 
 
 class BaseGeometry:
-    """ empty class"""
+    """Represent base geometry."""
     pass
