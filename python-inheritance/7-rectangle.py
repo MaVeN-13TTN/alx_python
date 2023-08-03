@@ -1,19 +1,30 @@
-""" module subclass rectangle
-"""
-BaseGeometry = __import__('6-base_geometry').BaseGeometry
+"""Full rectangle"""
+
+
+class BaseGeometry:
+    """Class BaseGeometry"""
+
+    def area(self):
+        raise Exception("area() is not implemented")
+
+    def integer_validator(self, name, value):
+        if type(value) is not int:
+            raise TypeError(f"{name} must be an integer")
+        if value <= 0:
+            raise ValueError(f"{name} must be greater than 0")
 
 
 class Rectangle(BaseGeometry):
-    """Rectangle that inherits from BaseGeometry"""
+    """Class Rectangle"""
+
     def __init__(self, width, height):
-        BaseGeometry.integer_validator(self, 'height', height)
-        self.__height = height
-        BaseGeometry.integer_validator(self, 'width', width)
         self.__width = width
+        self.__height = height
+
+        Rectangle.integer_validator(self, "height", self.__height)
 
     def area(self):
-        return self.__width * self.__height
+        return self.__height * self.__width
 
     def __str__(self):
-
-        return "[Rectangle] {}/{}".format(self.__width, self.__height)
+        return (f"[Rectangle] {self.__width}/{self.__height}")
