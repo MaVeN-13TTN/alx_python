@@ -94,14 +94,6 @@ class Rectangle(Base):
             [print("#", end="") for w in range(self.width)]
             print("")
 
-    def display(self):
-        """Displays a Rectangle"""
-        rectangle= self.y*"/n"
-        for i in range(self.height):
-            rectangle += (""*self.x)
-            rectangle += (""*self.width) + "/n"
-            print(rectangle,end=' ')
-
     def update(self, *args, **kwargs):
         """Update the Rectangle.
 
