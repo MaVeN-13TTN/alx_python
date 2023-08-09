@@ -33,7 +33,6 @@ class Rectangle(Base):
 
     @width.setter
     def width(self, value):
-        """width setter"""
         if type(value) != int:
             raise TypeError("width must be an integer")
         if value <= 0:
@@ -47,7 +46,6 @@ class Rectangle(Base):
 
     @height.setter
     def height(self, value):
-        """height setter"""
         if type(value) != int:
             raise TypeError("height must be an integer")
         if value <= 0:
@@ -61,7 +59,6 @@ class Rectangle(Base):
 
     @x.setter
     def x(self, value):
-        """x setter"""
         if type(value) != int:
             raise TypeError("x must be an integer")
         if value < 0:
@@ -75,7 +72,6 @@ class Rectangle(Base):
 
     @y.setter
     def y(self, value):
-        """y setter"""
         if type(value) != int:
             raise TypeError("y must be an integer")
         if value < 0:
@@ -85,7 +81,7 @@ class Rectangle(Base):
     def area(self):
         """Return the area of the Rectangle."""
         return self.width * self.height
-    
+
     def display(self):
         """Print the Rectangle using the `#` character."""
         if self.width == 0 or self.height == 0:
@@ -97,8 +93,8 @@ class Rectangle(Base):
             [print(" ", end="") for x in range(self.x)]
             [print("#", end="") for w in range(self.width)]
             print("")
-    
-      def update(self, *args, **kwargs):
+
+    def update(self, *args, **kwargs):
         """Update the Rectangle.
 
         Args:
@@ -159,4 +155,4 @@ class Rectangle(Base):
         return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id,
                                                        self.x, self.y,
                                                        self.width, self.height)
-
+    
