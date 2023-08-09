@@ -112,7 +112,7 @@ class Rectangle(Base):
                 - 3rd argument represent height attribute
                 - 4th argument represents x attribute
                 - 5th argument represents y attribute
-            **kwargs (dict): New key/value pairs of attributes.
+            **kwargs (dict): New key or value pairs of attributes.
         """
         if args and len(args) != 0:
             a = 0
