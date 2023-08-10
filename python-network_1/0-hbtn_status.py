@@ -1,21 +1,14 @@
-"""
-Module to fetch and display the status of a website.
-"""
+#!/usr/bin/python3
+"""fetches https://intranet.hbtn.io/status"""
 
-from urllib import requests
-
-def fetch_hbtn_status():
-    """
-    Fetches and displays the status of https://alu-intranet.hbtn.io/status.
-    """
-    url = 'https://alu-intranet.hbtn.io/status'
-    response = requests.get(url)
-    content_type = type(response.text)
-    content = response.text
-   
-    print("Body response:")
-    print(f"\t- type: {content_type}")
-    print(f"\t- content: {content}")
-   
 if __name__ == "__main__":
-    fetch_hbtn_status()
+    import urllib.request
+
+    with urllib.request.urlopen('https://intranet.hbtn.io/status') as response:
+        html = response.read()
+
+        print('Body response:')
+        print("\t- type: {}".format(type(html)))
+        print("\t- content: {}".format(html))
+        print("\t- utf8 content: {}".format(html.decode('utf-8')))
+        
