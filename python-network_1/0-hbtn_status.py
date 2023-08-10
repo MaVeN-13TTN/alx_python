@@ -2,13 +2,15 @@
 - fetches https://intranet.hbtn.io/status.
 - uses urlib package
 """
-from urllib import request
+from urllib import requests
 
-if __name__ == "__main__":
-    with request.urlopen("https://intranet.hbtn.io/status") as response:
-        response = response.read()
-        print("Body response:")
-        print("\t- type: {}".format(type(response)))
-        print("\t- content: {}".format(response))
-        print("\t- utf8 content: {}".format(response.decode(encoding='utf-8')))
-        
+url = 'https://alu-intranet.hbtn.io/status'
+response = requests.get(url)
+
+if response.status_code == 200:
+    data = response.json()
+    print("Body response:")
+    print("\t- type:", type(data))
+    print("\t- content:", data)
+else:
+    print("Error:", response.status_code)
