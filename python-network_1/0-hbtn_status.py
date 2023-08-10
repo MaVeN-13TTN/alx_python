@@ -1,14 +1,17 @@
-#!/usr/bin/python3
-"""fetches https://intranet.hbtn.io/status"""
+import requests
 
 if __name__ == "__main__":
-    import urllib.request
-
-    with urllib.request.urlopen('https://intranet.hbtn.io/status') as response:
-        html = response.read()
-
-        print('Body response:')
-        print("\t- type: {}".format(type(html)))
-        print("\t- content: {}".format(html))
-        print("\t- utf8 content: {}".format(html.decode('utf-8')))
-        
+    # Define the URL to fetch
+    url = "https://alu-intranet.hbtn.io/status"
+    
+    # Send an HTTP GET request to the specified URL
+    response = requests.get(url)
+    
+    # Print the header for the response body
+    print("Body response:")
+    
+    # Print the type of the response content
+    print("\t- type:", type(response.text), end="$\n")
+    
+    # Print the content of the response body
+    print("\t- content:", response.text, end="$\n")
