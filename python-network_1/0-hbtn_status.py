@@ -1,16 +1,21 @@
-"""A script that
-- fetches https://intranet.hbtn.io/status.
-- uses urlib package
 """
+Module to fetch and display the status of a website.
+"""
+
 from urllib import requests
 
-url = 'https://alu-intranet.hbtn.io/status'
-response = requests.get(url)
-
-if response.status_code == 200:
-    data = response.json()
+def fetch_hbtn_status():
+    """
+    Fetches and displays the status of https://alu-intranet.hbtn.io/status.
+    """
+    url = 'https://alu-intranet.hbtn.io/status'
+    response = requests.get(url)
+    content_type = type(response.text)
+    content = response.text
+   
     print("Body response:")
-    print("\t- type:", type(data))
-    print("\t- content:", data)
-else:
-    print("Error:", response.status_code)
+    print(f"\t- type: {content_type}")
+    print(f"\t- content: {content}")
+   
+if __name__ == "__main__":
+    fetch_hbtn_status()
