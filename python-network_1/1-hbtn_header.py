@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """Fetches the value of the X-Request-Id header from a given URL's response"""
 
 from urllib import requests
