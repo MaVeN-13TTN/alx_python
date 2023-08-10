@@ -3,13 +3,28 @@ value of the X-Request-Id variable found in the header of the response.
 
 Usage: ./1-hbtn_header.py <URL>
 """
-import sys
+# Import the requests module
+from urllib import requests
 
-import urllib.request
+# Define the URL to fetch
+url = 'https://alu-intranet.hbtn.io/status'
 
-if __name__ == "__main__":
-    url = sys.argv[1]
+# Send a GET request to the URL
+response = requests.get(url)
 
-    request = urllib.request.Request(url)
-    with urllib.request.urlopen(request) as response:
-        print(dict(response.headers).get("X-Request-Id"))
+# Check if the response status code is 200 (OK)
+if response.status_code == 200:
+    # Parse the JSON data from the response
+    data = response.json()
+    
+    # Display the header for the response body
+    print("Body response:")
+    
+    # Display the type of the data
+    print("\t- type:", type(data))
+    
+    # Display the content of the data
+    print("\t- content:", data)
+else:
+    # Display an error message along with the status code
+    print("Error:", response.status_code)
