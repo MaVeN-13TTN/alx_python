@@ -1,5 +1,6 @@
+#!/usr/bin/python3
 """takes url & email, sends a POST request and displays the response"""
-from urllib import requests
+import requests
 import sys
 
 def send_post_request(url, email):
@@ -12,4 +13,3 @@ if __name__ == '__main__':
     email = sys.argv[2]
     response_body = send_post_request(url, email)
     print(response_body)
-    
