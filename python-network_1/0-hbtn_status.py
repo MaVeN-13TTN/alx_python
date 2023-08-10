@@ -1,4 +1,8 @@
-import requests
+'''
+Python script that fetches https://alu-intranet.hbtn.io/status. 
+The script uses the requests package to make the request and then prints the body of the response.
+'''
+from urllib import requests
 
 if __name__ == "__main__":
     # Define the URL to fetch
