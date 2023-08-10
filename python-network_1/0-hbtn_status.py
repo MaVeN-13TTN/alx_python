@@ -1,21 +1,22 @@
-'''
-Python script that fetches https://alu-intranet.hbtn.io/status. 
-The script uses the requests package to make the request and then prints the body of the response.
-'''
+#!/usr/bin/env python3
+"""
+Module to fetch and display the status of a website.
+"""
+
 import requests
 
-if __name__ == "__main__":
-    # Define the URL to fetch
-    url = "https://alu-intranet.hbtn.io/status"
-    
-    # Send an HTTP GET request to the specified URL
+def fetch_hbtn_status():
+    """
+    Fetches and displays the status of https://alu-intranet.hbtn.io/status.
+    """
+    url = 'https://alu-intranet.hbtn.io/status'
     response = requests.get(url)
-    
-    # Print the header for the response body
+    content_type = type(response.text)
+    content = response.text
+   
     print("Body response:")
-    
-    # Print the type of the response content
-    print("\t- type:", type(response.text), end="$\n")
-    
-    # Print the content of the response body
-    print("\t- content:", response.text, end="$\n")
+    print(f"\t- type: {content_type}")
+    print(f"\t- content: {content}")
+   
+if __name__ == "__main__":
+    fetch_hbtn_status()
