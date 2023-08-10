@@ -1,14 +1,12 @@
-import requests
-import sys
-username = sys.argv[1]
-password = sys.argv[2]
-url = "https://api.github.com/user"
-headers = {
-    "Authorization": "Basic " + base64.b64encode(username + ":" + password).decode("utf-8")
-}
-response = requests.get(url, headers=headers)
-if response.status_code == 200:
-    print(response.json()["id"])
-else:
-    print("Error:", response.status_code)
-    
+#!/usr/bin/python3
+"""takes your GitHub credentials (username and password)
+   uses the GitHub API to display your id"""
+from sys import argv
+from requests import get
+from requests.auth import HTTPBasicAuth
+
+
+if __name__ == "__main__":
+    credentials = HTTPBasicAuth(argv[1], argv[2])
+    request = get("https://api.github.com/user", auth=credentials)
+    print(request.json().get("id"))
