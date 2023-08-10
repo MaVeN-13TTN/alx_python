@@ -1,19 +1,15 @@
-import sys
+"""takes url & email, sends a POST request and displays the response"""
 from urllib import requests
+import sys
 
-def main():
-    # Get the URL and email from command-line arguments
+def send_post_request(url, email):
+    data = {'email': email}
+    response = requests.post(url, data=data)
+    return response.text
+
+if __name__ == '__main__':
     url = sys.argv[1]
     email = sys.argv[2]
+    response_body = send_post_request(url, email)
+    print(response_body)
     
-    # Data to be sent in the POST request
-    data = {'email': email}
-    
-    # Send a POST request with the email parameter to the provided URL
-    response = requests.post(url, data=data)
-    
-    # Display the body of the response
-    print(response.text)
-
-if __name__ == "__main__":
-    main()
