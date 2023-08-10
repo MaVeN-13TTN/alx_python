@@ -1,31 +1,21 @@
+#!/usr/bin/python3
+"""Fetches the value of the X-Request-Id header from a given URL's response"""
+
+import requests
 import sys
-from urllib import requests
 
 def main():
-    # Check if the correct number of command-line arguments is provided
+    """Main function to fetch and display the X-Request-Id header"""
     if len(sys.argv) != 2:
-        print("Usage: python script.py <URL>")
-        return
-    
-    # Get the URL from the command-line argument
+        print("Usage: ./1-hbtn_header.py <URL>")
+        sys.exit(1)
+
     url = sys.argv[1]
-    
-    # Send an HTTP GET request to the provided URL
     response = requests.get(url)
-    
-    # Check if the request was successful (status code 200)
-    if response.status_code == 200:
-        # Extract the value of the 'X-Request-Id' header from the response
-        x_request_id = response.headers.get('X-Request-Id')
-        
-        # Check if the 'X-Request-Id' header is present in the response
-        if x_request_id:
-            # Print the value of the 'X-Request-Id' header
-            print(x_request_id)
-        else:
-            print("X-Request-Id not found in response headers.")
-    else:
-        print("Request failed with status code:", response.status_code)
+    x_request_id = response.headers.get('X-Request-Id')
+
+    if x_request_id is not None:
+        print(x_request_id)
 
 if __name__ == "__main__":
     main()
