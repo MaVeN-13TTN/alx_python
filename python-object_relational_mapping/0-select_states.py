@@ -1,4 +1,4 @@
-from mysqlclient import MySQLdb
+import MySQLdb
 def list_states(username, password, database):
     # Connect to the MySQL server
     connection = MySQLdb.connect(
