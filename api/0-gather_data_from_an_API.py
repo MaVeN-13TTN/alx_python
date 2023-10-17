@@ -33,7 +33,7 @@ def get_todo(id: int):
 
 if __name__ == "__main":
     if len(sys.argv) != 2:
-        print("Usage: python your_script_name.py <user_id>")
+        print("Usage: python 0-gather_data_from_an_API.py <user_id>")
     else:
         id = int(sys.argv[1])
         get_todo(id)
