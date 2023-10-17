@@ -1,35 +1,44 @@
-import requests
+#!/usr/bin/python3
 import json
+import requests
 
-# Fetch employee details
-employee_response = requests.get("https://jsonplaceholder.typicode.com/users")
-employee_data = employee_response.json()
 
-# Fetch TODO list for all employees
-todos_response = requests.get("https://jsonplaceholder.typicode.com/todos")
-todos_data = todos_response.json()
+def get_all_users_todos():
+    '''
+    Given Task:
+    Create a Python function that utilizes the Trello API to retrieve all the todos associated with a specific user.
+    The function should take the user's Trello API key and return a list of all the todos for useres
+    '''
+    user_url = 'https://jsonplaceholder.typicode.com/users'
+    try:
+        response = requests.get(user_url)
+        users = response.json()
+        all_users_todo = {}
 
-# Prepare data for JSON export
-export_data = {}
+        for user in users:
+            user_id = user['id']
+            todos_url = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(
+                user_id)
+            response_todos = requests.get(todos_url)
+            response_todos.raise_for_status()
+            todos = response_todos.json()
+            user_todo_list = []
 
-for employee in employee_data:
-    employee_id = str(employee.get("id"))
-    employee_name = employee.get("username")
-    export_data[employee_id] = []
+            for todo in todos:
+                user_todo_list.append({
+                    'username': user['username'],
+                    'task': todo['title'],
+                    'completed': todo['completed'],
+                })
 
-    for task in todos_data:
-        if task.get("userId") == employee_id:
-            export_data[employee_id].append(
-                {
-                    "username": employee_name,
-                    "task": task.get("title"),
-                    "completed": task.get("completed")
-                }
-            )
+            all_users_todo[user_id] = user_todo_list
 
-# Export data to JSON file
-filename = "todo_all_employees.json"
-with open(filename, mode="w") as file:
-    json.dump(export_data, file)
+        json_file_name = 'todo_all_employees.json'
+        with open(json_file_name, mode='w') as json_file:
+            json.dump(all_users_todo, json_file)
+    except Exception as e:
+        print(e)
 
-print(f"Data exported to {filename} successfully.")
+
+if __name__ == '__main__':
+    get_all_users_todos()
