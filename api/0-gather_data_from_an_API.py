@@ -1,5 +1,4 @@
-import requests
-import sys
+import requests,sys
 
 def get_todo(id:int):
     url = f'https://jsonplaceholder.typicode.com/users/{id}'
@@ -21,10 +20,6 @@ def get_todo(id:int):
             print(f"\t {i['title']}")
     __doc__="""doc for class"""
 __doc__="""doc for module"""
-
-if __name__ == "__main":
-    if len(sys.argv) != 2:
-        print("Usage: python 0-gather_data_from_an_API.py <user_id>")
-    else:
-        id = int(sys.argv[1])
-        get_todo(id)
+if __name__ == "__main__":
+    id = int(sys.argv[1])
+    get_todo(id)
