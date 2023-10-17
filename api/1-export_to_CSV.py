@@ -1,39 +1,31 @@
-#!/usr/bin/python3
-"""
-Script that, using this REST API, for a given employee ID, returns
-information about his/her TODO list progress
-and export data in the CSV format.
-"""
-
 import csv
-import json
 import requests
-from sys import argv
+import sys
 
+if len(sys.argv) != 2:
+    print("Usage: python3 1-export_to_CSV.py <employee_id>")
+    sys.exit(1)
 
-if __name__ == "__main__":
+employee_id = sys.argv[1]
 
-    sessionReq = requests.Session()
+# Fetch employee details
+employee_response = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}")
+employee_data = employee_response.json()
+employee_name = employee_data.get("name")
 
-    idEmp = argv[1]
-    idURL = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(idEmp)
-    nameURL = 'https://jsonplaceholder.typicode.com/users/{}'.format(idEmp)
+# Fetch TODO list for the employee
+todos_response = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos")
+todos_data = todos_response.json()
 
-    employee = sessionReq.get(idURL)
-    employeeName = sessionReq.get(nameURL)
+# Calculate completed tasks
+completed_tasks = [task for task in todos_data if task.get("completed")]
 
-    json_req = employee.json()
-    usr = employeeName.json()['username']
+# Export data to CSV file
+filename = f"{employee_id}.csv"
+with open(filename, mode="w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+    for task in completed_tasks:
+        writer.writerow([employee_id, employee_name, task.get("completed"), task.get("title")])
 
-    totalTasks = 0
-
-    for done_tasks in json_req:
-        if done_tasks['completed']:
-            totalTasks += 1
-
-    fileCSV = idEmp + '.csv'
-
-    with open(fileCSV, "w", newline='') as csvfile:
-        write = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_ALL)
-        for i in json_req:
-            write.writerow([idEmp, usr, i.get('completed'), i.get('title')])
+print(f"Data exported to {filename} successfully.")
